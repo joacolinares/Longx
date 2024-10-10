@@ -1,0 +1,192 @@
+.login-area {
+    background: linear-gradient(180deg, rgba(19, 19, 27, 0.53) 0%, rgba(19, 19, 27, 0) 31.54%, rgba(19, 19, 27, 0.84) 61.26%, #13131B 100%), url(../../../../public/assets/home/hero-bg.png), lightgray 50% / cover no-repeat;
+    height: 100vh;
+    width: 100%;
+  
+  }
+.error-message {
+    color: #ffd930;
+    padding-top: 5px;
+}  
+
+  .left-login-content {
+    height: 100%;
+    h2 {
+      font-family: "Poppins", sans-serif;
+      color: rgba(255, 255, 255, 1);
+      font-size: 30px;
+      font-weight: 600;
+      line-height: 45px;
+      letter-spacing: 0em;
+      text-align: left;
+    }
+  
+    .login-form {
+      .form-group {
+        label {
+          font-family: "Poppins", sans-serif;
+          color: rgba(255, 255, 255, 1);
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 18px;
+          letter-spacing: 0em;
+          padding: 15px 0;
+        }
+        input {
+          background-color: #fff;
+          border-radius: 8px;
+          height: 54px;
+          border: none;
+          color: #13131B;
+          padding: 0 25px;
+          font-family: "Poppins", sans-serif;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 18px;
+          letter-spacing: 0em;
+          text-align: left;
+        }
+  
+      }
+      .form-check{
+        label{
+          font-family: "Poppins", sans-serif;
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 24px;
+          letter-spacing: 0em;
+          text-align: left;
+          color: rgba(105, 111, 121, 1);
+        }
+        input[type=checkbox] {
+          position: relative;
+          border: 2px solid rgba(248, 79, 79, 1);
+          border-radius: 2px;
+          background: none;
+          cursor: pointer;
+          line-height: 0;
+          margin: 0 .6em 0 0;
+          outline: 0;
+          padding: 0 !important;
+          vertical-align: text-top;
+          height: 20px;
+          width: 20px;
+          -webkit-appearance: none;
+          opacity: .5;
+        }
+  
+        input[type=checkbox]:hover {
+          opacity: 1;
+        }
+  
+        input[type=checkbox]:checked {
+          background-color: rgba(248, 79, 79, 1);
+          opacity: 1;
+        }
+  
+        .activeCheck:before {
+          content: '';
+          position: absolute;
+          right: 50%;
+          top: 50%;
+          width: 4px;
+          height: 10px;
+          border: solid #FFF;
+          border-width: 0 2px 2px 0;
+          margin: -1px -1px 0 -1px;
+          transform: rotate(45deg) translate(-50%, -50%);
+          z-index: 2;
+        }
+  
+      }
+      .login-btn{
+        .btn{
+          background: linear-gradient(91.44deg, #C20505 1.23%, #F84F4F 99.73%);
+          box-shadow: 4px 4px 32px 0px rgba(103, 90, 255, 0.07);
+          font-family: "Inter",sans-serif;
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 19px;
+          letter-spacing: 0em;
+          text-align: center;
+          height: 64px;
+          border-radius: 8px;
+          color: rgba(255, 255, 255, 1);
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+  
+    }
+    .or{
+      .divider{
+        background-color: rgba(245, 245, 245, 1);
+        width: 45%;
+        height: 1px;
+      }
+      .or-text {
+        font-family: "Inter",sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 15px;
+        letter-spacing: 0em;
+        text-align: center;
+        color: rgba(186, 186, 186, 1);
+      }
+    }
+    .google-btn{
+      .btn{
+        width: 100%;
+        background: rgba(16, 16, 18, 1);
+        box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.08);
+        height: 64px;
+        text-align: center;
+        border-radius: 8px;
+        img{
+          width: 24px;
+          height: 24px;
+        }
+        span{
+          font-family: "Poppins",sans-serif;
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 24px;
+          letter-spacing: 0em;
+          text-align: center;
+          color: rgba(255, 255, 255, 1);
+        }
+      }
+    }
+    .already-account{
+      p{
+        font-family: "Poppins",sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 24px;
+        letter-spacing: 0em;
+        color: rgba(255, 255, 255, 0.6);
+        a{
+          color: rgba(86, 237, 155, 1);
+        }
+      }
+    }
+  }
+  .right-login-content{
+    height: 100vh;
+  }
+  
+  
+  .show-pass {
+    bottom: -25px;
+    right: 26px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+  
+  @media only screen and (max-width: 1000px){
+    .login-area{
+      height: 100vh !important;
+    }
+  }
+  

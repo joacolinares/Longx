@@ -1,0 +1,459 @@
+.date-btn {
+    input#mat-input-0 {
+      background-color: transparent;
+      color: rgba(132, 143, 160, 1);
+      font-family: "Poppins", sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 24px;
+      letter-spacing: 0em;
+      text-align: left;
+  
+    }
+  
+    button.mdc-icon-button.mat-mdc-icon-button.mat-unthemed.mat-mdc-button-base {
+      color: rgba(255, 255, 255, 1) !important;
+    }
+  }
+  ::-webkit-scrollbar{
+    display: none;
+  }
+  
+  
+  
+  .chart-file {
+    .apexcharts-series{
+      path{
+        stroke: rgba(160, 8, 8, 0.753);
+      }
+    }
+    linearGradient{
+      stop{
+        stop-color: rgb(0, 0, 0);
+  
+      }
+      stop:last-child{
+        stop-color: rgb(0, 0, 0);
+      }
+      stop:first-child{
+        stop-color: rgb(66 37 37);
+      }
+  
+    }
+    .apexcharts-graphical{
+      line:first-child{
+        stroke: #FF4D4D;
+        stroke-dasharray: 10px;
+      }
+    }
+    .apexcharts-gridlines-horizontal{
+      line{
+        stroke-dasharray: 10px;
+        opacity: 0.3;
+      }
+    }
+    .apexcharts-grid-borders{
+        line{
+          stroke-dasharray: 10px;
+          opacity: 0.3;
+        }
+  
+    }
+  .apexcharts-series-markers{
+    circle{
+        stroke-width: 76;
+        stroke: #ff00004a;
+        fill: red;
+    }
+  }
+    #SvgjsPath1021 {
+      stroke: transparent;
+    }
+  
+    #SvgjsPath1011 {
+      stroke: transparent;
+    }
+  
+    #SvgjsCircle1092 {
+      stroke-width: 76;
+      stroke: #ff00004a;
+      fill: red;
+    }
+  
+    #SvgjsPath1023 {
+      stroke: #ff00004a;
+    }
+  
+    #SvgjsLine1035 {
+      stroke: #FF4D4D;
+      stroke-dasharray: 10px;
+      display: none !important;
+    }
+  
+    #SvgjsLine1040 {
+      stroke: #FF4D4D;
+      stroke-dasharray: 10px;
+      display: none;
+    }
+  
+    #SvgjsLine1068 {
+      stroke: #FF4D4D;
+      stroke-dasharray: 10px;
+    }
+  
+    #SvgjsStop1018 {
+      stop-color: #FF4D4D;
+  
+    }
+  
+    stop#SvgjsStop1019 {
+      stop-color: rgba(254, 114, 114, 0.18);
+    }
+  
+    stop#SvgjsStop1020 {
+      stop-color: rgba(28, 28, 38, 0);
+    }
+  
+    line#SvgjsLine1008 {
+      stroke: #FF4D4D;
+      stroke-dasharray: 10px;
+    }
+  
+    circle#SvgjsCircle1266 {
+      stroke-width: 76;
+      stroke: #ff00004a;
+      fill: red;
+    }
+  
+    path#SvgjsPath1022 {
+      stroke: rgba(255, 77, 77, 1);
+    }
+  
+    .apexcharts-tooltip-title {
+      display: none;
+    }
+  
+    span.apexcharts-tooltip-marker {
+      background-color: red !important;
+    }
+  
+    .apexcharts-tooltip.apexcharts-theme-light.apexcharts-active {
+      top: 30.168px !important;
+    }
+  
+    #SvgjsG1024 line {
+      stroke: rgba(201, 203, 205, 0.08);
+      stroke-dasharray: 10;
+    }
+  
+    #SvgjsG1244 text {
+      fill: #fff;
+    }
+  
+    #SvgjsG1088 text {
+      fill: #fff;
+    }
+  
+    line#SvgjsLine1077 {
+      stroke: rgba(201, 203, 205, 0.08);
+      stroke-dasharray: 10;
+    }
+  
+    #SvgjsLine1082 {
+      stroke: rgba(201, 203, 205, 0.08);
+      stroke-dasharray: 10;
+    }
+  
+    line#SvgjsLine1242 {
+      stroke: rgba(201, 203, 205, 0.08);
+      stroke-dasharray: 10;
+    }
+  
+    .apexcharts-toolbar {
+      display: none;
+    }
+  
+    .apexcharts-tooltip.apexcharts-theme-light.apexcharts-active {
+      background-color: transparent;
+      border: 0;
+      box-shadow: none;
+    }
+  
+    .apexcharts-tooltip-y-group span {
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  
+    .apexcharts-xaxistooltip.apexcharts-xaxistooltip-bottom.apexcharts-theme-light {
+      display: none;
+    }
+  
+    #SvgjsG1189 {
+      text {
+        fill: #fff !important;
+      }
+    }
+  
+    tspan {
+      fill: #fff !important;
+    }
+  
+  }
+  .chart-pie{
+    .apexcharts-series{
+      path{
+        stroke:transparent;
+      }
+  }
+  }
+  .chart-file2 {
+    .apexcharts-graphical{
+      line:first-child{
+        stroke: rgba(64, 218, 132, 1);
+        stroke-dasharray: 10px;
+      }
+    }
+    .apexcharts-series-markers{
+      circle{
+          stroke-width: 76;
+          stroke: rgba(64, 218, 131, 0.541);
+          fill: rgba(64, 218, 132, 1);
+      }
+    }
+    .apexcharts-gridlines-horizontal{
+      line{
+        stroke-dasharray: 10px;
+        opacity: 0.3;
+      }
+    }
+    .apexcharts-grid-borders{
+        line{
+          stroke-dasharray: 10px;
+          opacity: 0.3;
+        }
+  
+    }
+    .apexcharts-graphical line::first-child {
+      stroke: rgba(64, 218, 154, 0.712);
+      stroke-dasharray: 10px;
+    }
+    // line
+    line#SvgjsLine1102 {
+      stroke: rgba(64, 218, 154, 0.712);
+      stroke-dasharray: 10px;
+    }
+    line#SvgjsLine1286 {
+      stroke: rgba(64, 218, 154, 0.712);
+      stroke-dasharray: 10px;
+    }
+    path#SvgjsPath1220 {
+      stroke: green;
+  }
+    // SvgjsCircle1092
+  
+    #SvgjsCircle1092 {
+      stroke-width: 76;
+      stroke: #ff00004a;
+      fill: red;
+    }
+  
+    #SvgjsPath1117 {
+      stroke: rgba(64, 218, 132, 1);
+    }
+  
+    #SvgjsG1119 {
+      line {
+        stroke: rgba(64, 218, 131, 0.623);
+        stroke-dasharray: 10;
+      }
+    }
+  
+    line#SvgjsLine1139 {
+      display: none;
+    }
+  
+    line#SvgjsLine1135 {
+      display: none;
+    }
+  
+    line#SvgjsLine1185 {
+      stroke: rgba(64, 218, 131, 0.623);
+      stroke-dasharray: 10;
+    }
+  
+    .apexcharts-xaxistooltip.apexcharts-xaxistooltip-bottom.apexcharts-theme-light {
+      display: none;
+    }
+  
+    #SvgjsG1189 {
+      text {
+        fill: #fff !important;
+      }
+    }
+  
+    #SvgjsPath1021 {
+      stroke: transparent;
+    }
+  
+    #SvgjsPath1011 {
+      stroke: transparent;
+    }
+  
+    #SvgjsCircle1092 {
+      stroke-width: 76;
+      stroke: #ff00004a;
+      fill: red;
+    }
+  
+    #SvgjsPath1023 {
+      stroke: #ff00004a;
+    }
+  
+    #SvgjsLine1035 {
+      stroke: #FF4D4D;
+      stroke-dasharray: 10px;
+      display: none !important;
+    }
+  
+    #SvgjsLine1040 {
+      stroke: #FF4D4D;
+      stroke-dasharray: 10px;
+      display: none;
+    }
+  
+    #SvgjsLine1068 {
+      stroke: #FF4D4D;
+      stroke-dasharray: 10px;
+    }
+  
+    #SvgjsStop1018 {
+      stop-color: #FF4D4D;
+  
+    }
+  
+    stop#SvgjsStop1019 {
+      stop-color: rgba(254, 114, 114, 0.18);
+    }
+  
+    stop#SvgjsStop1020 {
+      stop-color: rgba(28, 28, 38, 0);
+    }
+  
+    line#SvgjsLine1008 {
+      stroke: #FF4D4D;
+      stroke-dasharray: 10px;
+    }
+  
+    circle#SvgjsCircle1206 {
+      stroke-width: 76;
+      stroke: rgb(16 137 13 / 20%);
+      fill: #40C93D;
+    }
+  
+    path#SvgjsPath1022 {
+      stroke: rgba(255, 77, 77, 1);
+    }
+  
+    .apexcharts-tooltip-title {
+      display: none;
+    }
+  
+    span.apexcharts-tooltip-marker {
+      background-color: rgba(64, 218, 131, 0.623) !important;
+    }
+  
+    .apexcharts-tooltip.apexcharts-theme-light.apexcharts-active {
+      top: 30.168px !important;
+    }
+  
+    #SvgjsG1024 line {
+      stroke: rgba(201, 203, 205, 0.08);
+      stroke-dasharray: 10;
+    }
+  
+    #SvgjsG1244 text {
+      fill: #fff;
+    }
+  
+    #SvgjsG1088 text {
+      fill: #fff;
+    }
+  
+    line#SvgjsLine1077 {
+      stroke: rgba(201, 203, 205, 0.08);
+      stroke-dasharray: 10;
+    }
+  
+    #SvgjsLine1082 {
+      stroke: rgba(201, 203, 205, 0.08);
+      stroke-dasharray: 10;
+    }
+  
+    line#SvgjsLine1242 {
+      stroke: rgba(201, 203, 205, 0.08);
+      stroke-dasharray: 10;
+    }
+  
+    .apexcharts-toolbar {
+      display: none;
+    }
+  
+    .apexcharts-tooltip.apexcharts-theme-light.apexcharts-active {
+      background-color: transparent;
+      border: 0;
+      box-shadow: none;
+    }
+  
+    .apexcharts-tooltip-y-group span {
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  
+    .apexcharts-xaxistooltip.apexcharts-xaxistooltip-bottom.apexcharts-theme-light {
+      display: none;
+    }
+  
+    #SvgjsG1189 {
+      text {
+        fill: #fff !important;
+      }
+    }
+  
+    tspan {
+      fill: #fff !important;
+    }
+  
+    #SvgjsStop1113{
+      stop-color: rgba(64, 218, 131, 0.623) ;
+    }
+    #SvgjsStop1114{
+      stop-color: #000 ;
+    }
+  
+  }
+  
+  .comapare-chart{
+    .apexcharts-plot-series
+    {
+      .apexcharts-series:first-child{
+       path{
+        stroke: red !important;
+       }
+      }
+    }
+    .apexcharts-legend-series{
+      display: none !important;
+    }
+  
+  }
+  
+  .form-group{
+    label{
+      display: block;
+    }
+    div{
+      color: #FF4D4D;
+    }
+  }
