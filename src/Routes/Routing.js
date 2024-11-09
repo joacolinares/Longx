@@ -41,91 +41,127 @@ import EthOtcComponent from '../client/dashboard/components/otc/eth/EthOtcCompon
 import InjOtcComponent from '../client/dashboard/components/otc/inj/InjOtcComponent';
 import ProfileComponent from '../client/dashboard/components/profile/ProfileComponent';
 import TransactionHistory from '../client/dashboard/components/history/TransactionHistory';
+import Web3DashboardComponent from '../web3/dashboard/Dashboard';
+import Web3GeneralComponent from '../web3/dashboard/components/general/GeneralComponent';
+import Web3BilleteraComponent from '../web3/dashboard/components/billetera/BilleteraComponent';
+import Web3WithdrawComponent from '../web3/dashboard/components/billetera/withdraw/WithdrawComponent';
+import Web3DepositComponent from '../web3/dashboard/components/billetera/deposit/DepositComponent';
+import Web3ClipWalletComponent from '../web3/dashboard/components/billetera/wallet/clp/ClipWalletComponent';
+import Web3UsdtWalletComponent from '../web3/dashboard/components/billetera/wallet/usdt/UsdtWalletComponent';
+import Web3TronixWalletComponent from '../web3/dashboard/components/billetera/wallet/trx/TronixWalletComponent';
+import Web3BtcWalletComponent from '../web3/dashboard/components/billetera/wallet/btc/BtcWalletComponent';
+import Web3InjWalletComponent from '../web3/dashboard/components/billetera/wallet/inj/InjWalletComponent';
+import Web3EthWalletComponent from '../web3/dashboard/components/billetera/wallet/eth/EthWalletComponent';
+import Web3UsdtWithdrawComponent from '../web3/dashboard/components/billetera/withdraw/usdt/UsdtWithdrawComponent';
+import Web3ClpWithdrawComponent from '../web3/dashboard/components/billetera/withdraw/clp/ClpWithdrawComponent';
+import Web3BitcoinWithdrawComponent from '../web3/dashboard/components/billetera/withdraw/btc/BitcoinWithdrawComponent';
+import Web3TronixWithdrawComponent from '../web3/dashboard/components/billetera/withdraw/trx/TronixWithdrawComponent';
+import Web3EthereumWithdrawComponent from '../web3/dashboard/components/billetera/withdraw/eth/EthereumWithdrawComponent';
+import Web3InjectiveWithdrawComponent from '../web3/dashboard/components/billetera/withdraw/inj/InjectiveWithdrawComponent';
+import Web3UsdtDepositComponent from '../web3/dashboard/components/billetera/deposit/usdt/UsdtDepositComponent';
+import Web3ClpDepositComponent from '../web3/dashboard/components/billetera/deposit/clp/ClpDepositComponent';
+import Web3BtcDepositComponent from '../web3/dashboard/components/billetera/deposit/btc/BtcDepositComponent';
+import Web3TrxDepositComponent from '../web3/dashboard/components/billetera/deposit/trx/TrxDepositComponent';
+import Web3EthDepositComponent from '../web3/dashboard/components/billetera/deposit/eth/EthDepositComponent';
+import Web3InjDepositComponent from '../web3/dashboard/components/billetera/deposit/inj/InjDepositComponent';
+import Web3ProfileComponent from '../web3/dashboard/components/profile/ProfileComponent';
+import Web3TransactionHistory from '../web3/dashboard/components/history/TransactionHistory';
 
 
 const Routing = () => {
-  const { token } = useContext(AuthContext)
+  const { token, web3Token } = useContext(AuthContext);
+
   return (
     <Routes>
-
-      {
-        !token ?
-          <>
-            <Route path="/" element={< HomeComponent />} />
-            <Route path="*" element={<Navigate to="/" />} />
-            <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} />
-            <Route path="forget/password" element={<ForgotPasswordComponent />} />
-            <Route path="change/password" element={<ChangePasswordComponent />} />
-          </> :
-          <>
-            <Route path='/' element={<Navigate to="/dashboard" />} />
-            <Route path="dashboard" element={<DashboardComponent />}>
-              <Route path="" element={<Navigate to="general" />} />
-              <Route path="general" element={<GeneralComponent />} />
-              <Route path="wallet" element={<BilleteraComponent />}>
-                <Route path='' element={<Navigate to="clp" />} />
-                <Route path="clp" element={<ClipWalletComponent />} />
-                <Route path="usdt" element={<UsdtWalletComponent />} />
-                <Route path="trx" element={<TronixWalletComponent />} />
-                <Route path="btc" element={<BtcWalletComponent />} />
-                <Route path="inj" element={<InjWalletComponent />} />
-                <Route path="eth" element={<EthWalletComponent />} />
+      {token || web3Token ? (
+        <>
+          {token ? (
+            <>
+              {/* Token-based routing */}
+              <Route path="/" element={<Navigate to="/dashboard" />} />
+              <Route path="dashboard" element={<DashboardComponent />}>
+                <Route path="" element={<Navigate to="general" />} />
+                <Route path="general" element={<GeneralComponent />} />
+                <Route path="wallet" element={<BilleteraComponent />}>
+                  <Route path="" element={<Navigate to="clp" />} />
+                  <Route path="clp" element={<ClipWalletComponent />} />
+                  <Route path="usdt" element={<UsdtWalletComponent />} />
+                  <Route path="trx" element={<TronixWalletComponent />} />
+                  <Route path="btc" element={<BtcWalletComponent />} />
+                  <Route path="inj" element={<InjWalletComponent />} />
+                  <Route path="eth" element={<EthWalletComponent />} />
+                </Route>
+                <Route path="withdraw" element={<WithdrawComponent />}>
+                  <Route path="" element={<Navigate to="clp" />} />
+                  <Route path="usdt" element={<UsdtWithdrawComponent />} />
+                  <Route path="clp" element={<ClpWithdrawComponent />} />
+                  <Route path="btc" element={<BitcoinWithdrawComponent />} />
+                  <Route path="trx" element={<TronixWithdrawComponent />} />
+                  <Route path="eth" element={<EthereumWithdrawComponent />} />
+                  <Route path="inj" element={<InjectiveWithdrawComponent />} />
+                </Route>
+                <Route path="deposit" element={<DepositComponent />}>
+                  <Route path="usdt" element={<UsdtDepositComponent />} />
+                  <Route path="clp" element={<ClpDepositComponent />} />
+                  <Route path="btc" element={<BtcDepositComponent />} />
+                  <Route path="trx" element={<TrxDepositComponent />} />
+                  <Route path="eth" element={<EthDepositComponent />} />
+                  <Route path="inj" element={<InjDepositComponent />} />
+                </Route>
+                <Route path="profile" element={<ProfileComponent />} />
+                <Route path="history" element={<TransactionHistory />} />
               </Route>
-              <Route path="withdraw" element={<WithdrawComponent />}>
-                <Route path='' element={<Navigate to="clp" />} />
-                <Route path="usdt" element={<UsdtWithdrawComponent />} />
-                <Route path="clp" element={<ClpWithdrawComponent />} />
-                <Route path="btc" element={<BitcoinWithdrawComponent />} />
-                <Route path="trx" element={<TronixWithdrawComponent />} />
-                <Route path="eth" element={<EthereumWithdrawComponent />} />
-                <Route path="inj" element={<InjectiveWithdrawComponent />} />
+            </>
+          ) : (
+            <>
+              {/* Web3Token-based routing */}
+              <Route path="/" element={<Navigate to="/dashboard" />} />
+              <Route path="dashboard" element={<Web3DashboardComponent />}>
+                <Route path="" element={<Navigate to="general" />} />
+                <Route path="general" element={<Web3GeneralComponent />} />
+                <Route path="wallet" element={<Web3BilleteraComponent />}>
+                  <Route path="" element={<Navigate to="clp" />} />
+                  <Route path="clp" element={<Web3ClipWalletComponent />} />
+                  <Route path="usdt" element={<Web3UsdtWalletComponent />} />
+                  <Route path="trx" element={<Web3TronixWalletComponent />} />
+                  <Route path="btc" element={<Web3BtcWalletComponent />} />
+                  <Route path="inj" element={<Web3InjWalletComponent />} />
+                  <Route path="eth" element={<Web3EthWalletComponent />} />
+                </Route>
+                <Route path="withdraw" element={<Web3WithdrawComponent />}>
+                  <Route path="" element={<Navigate to="clp" />} />
+                  <Route path="usdt" element={<Web3UsdtWithdrawComponent />} />
+                  <Route path="clp" element={<Web3ClpWithdrawComponent />} />
+                  <Route path="btc" element={<Web3BitcoinWithdrawComponent />} />
+                  <Route path="trx" element={<Web3TronixWithdrawComponent />} />
+                  <Route path="eth" element={<Web3EthereumWithdrawComponent />} />
+                  <Route path="inj" element={<Web3InjectiveWithdrawComponent />} />
+                </Route>
+                <Route path="deposit" element={<Web3DepositComponent />}>
+                  <Route path="usdt" element={<Web3UsdtDepositComponent />} />
+                  <Route path="clp" element={<Web3ClpDepositComponent />} />
+                  <Route path="btc" element={<Web3BtcDepositComponent />} />
+                  <Route path="trx" element={<Web3TrxDepositComponent />} />
+                  <Route path="eth" element={<Web3EthDepositComponent />} />
+                  <Route path="inj" element={<Web3InjDepositComponent />} />
+                </Route>
+                <Route path="profile" element={<Web3ProfileComponent />} />
+                <Route path="history" element={<Web3TransactionHistory />} />
               </Route>
-
-              <Route path="deposit" element={<DepositComponent />}>
-                <Route path="usdt" element={<UsdtDepositComponent />} />
-                <Route path="clp" element={<ClpDepositComponent />} />
-                <Route path="btc" element={<BtcDepositComponent />} />
-                <Route path="trx" element={<TrxDepositComponent />} />
-                <Route path="eth" element={<EthDepositComponent />} />
-                <Route path="inj" element={<InjDepositComponent />} />
-              </Route>
-              <Route path="buy-sell" element={<ComprarVenderComponent />} />
-              <Route path="otc" element={<Otc />}>
-                <Route path='' element={<Navigate to="clp" />} />
-                <Route path="usdt" element={<UsdtOtcComponent />} />
-                <Route path="clp" element={<ClpOtcComponent />} />
-                <Route path="btc" element={<BtcOtcComponent />} />
-                <Route path="trx" element={<TrxOtcComponent />} />
-                <Route path="eth" element={<EthOtcComponent />} />
-                <Route path="inj" element={<InjOtcComponent />} />
-              </Route>
-              <Route path="profile" element={<ProfileComponent />} />
-              <Route path="history" element={<TransactionHistory />} />
-            </Route>
-
-            {/* 
-
-          </Route>
-          <Route path="buy-sell" element={<ComprarVenderComponent />} />
-          <Route path="market-place" element={<MarketplaceComponent />}>
-            <Route path="" element={<MarketComponent />} />
-            <Route path="home" element={<HomeMarketComponent />} />
-            <Route path="payment" element={<PaymentComponent />} />
-          </Route>
-          <Route path="otc" element={<OTCComponent />}>
-            <Route path="" element={<OtcClpComponent />} />
-            <Route path="clp" element={<OtcClpComponent />} />
-            <Route path="usdt" element={<OtcUsdtComponent />} />
-            <Route path="trx" element={<TrxOtcComponent />} />
-            <Route path="btc" element={<BtcOtcComponent />} />
-            <Route path="inj" element={<InjOtcComponent />} />
-          </Route>
-          <Route path="historial-transacciones" element={<HistorialTransaccionesComponent />} />
-          <Route path="profile" element={<PerfilComponent />} /> */}
-
-          </>
-      }
+            </>
+          )}
+        </>
+      ) : (
+        <>
+          {/* Public Routes for unauthenticated access */}
+          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="/" element={<HomeComponent />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="forget/password" element={<ForgotPasswordComponent />} />
+          <Route path="change/password" element={<ChangePasswordComponent />} />
+        </>
+      )}
     </Routes>
   );
 };

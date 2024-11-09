@@ -1,0 +1,621 @@
+.desktop-version{
+    .transaction-history{
+    background:rgba(28, 28, 38, 1);
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .top-bar{
+    h2{
+      font-family: "Poppins",sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 27px;
+      letter-spacing: 0.03em;
+      text-align: left;
+      color: rgba(255, 255, 255, 1);
+    }
+  }
+  .select-btn{
+    .btn{
+      border: 1px solid rgba(49, 53, 63, 1);
+      background-color: transparent;
+      height: 50px;
+      color: rgba(132, 143, 160, 1);
+    }
+  
+  }
+  
+  // background color
+  .buyC{
+    background-color: rgba(37, 59, 56, 1);
+    color: rgba(86, 237, 155, 1);
+  }
+  .sellC{
+    background-color: rgba(70, 44, 53, 1);
+    color:rgba(255, 120, 120, 1);
+  }
+  .exchangeC{
+    background-color: rgba(38, 53, 60, 1);
+    color:rgba(102, 237, 229, 1);
+  }
+  .withdrawC{
+    background-color: rgba(255, 146, 45, 0.15);
+    color:rgba(255, 182, 114, 1);
+  }
+  .depositC{
+    color: rgba(255, 240, 103, 1);
+    background: rgba(255, 240, 103, 0.15);
+  
+  }
+  
+  .pendingC{
+    color: rgba(249, 191, 104, 1);
+  }
+  .doneC{
+    color: rgba(64, 218, 132, 1);
+  }
+  .canceledC{
+    color:rgba(248, 118, 117, 1);
+  }
+  .transaction-table{
+    .transaction-table-head{
+      .Coin{
+        p{
+          font-family: "Poppins",sans-serif;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 18px;
+          letter-spacing: 0em;
+          color: rgba(255, 255, 255, 1);
+          text-transform: capitalize;
+        }
+      }
+      .Type{
+        p{
+          font-family: "Poppins",sans-serif;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 18px;
+          letter-spacing: 0em;
+          color: rgba(255, 255, 255, 1);
+          text-transform: capitalize;
+        }
+      }
+      .Date{
+        p{
+          font-family: "Poppins",sans-serif;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 18px;
+          letter-spacing: 0em;
+          color: rgba(255, 255, 255, 1);
+        }
+      }
+      .Amount{
+        p{
+          font-family: "Poppins",sans-serif;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 18px;
+          letter-spacing: 0em;
+          color: rgba(255, 255, 255, 1);
+        }
+      }
+      .Amount{
+        p{
+          font-family: "Poppins",sans-serif;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 18px;
+          letter-spacing: 0em;
+          color: rgba(255, 255, 255, 1);
+        }
+      }
+      .State{
+        p{
+          font-family: "Poppins",sans-serif;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 18px;
+          letter-spacing: 0em;
+          color: rgba(255, 255, 255, 1);
+        }
+      }
+    }
+  
+    .transaction-table-body{
+      .Date{
+        p{
+          font-family: "Poppins",sans-serif;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 18px;
+          letter-spacing: 0em;
+          color: rgba(255, 255, 255, 1);
+          text-transform: capitalize;
+        }
+      }
+      .coin{
+        .coin-box{
+          background-color: rgba(49, 53, 63, 1);
+          width: 44px;
+          height: 44px;
+          border-radius: 8px;
+        }
+        .coin-content{
+          h4{
+            font-family: "Poppins",sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 21px;
+            letter-spacing: 0em;
+            text-align: left;
+            color: rgba(255, 255, 255, 1);
+            text-transform: capitalize;
+          }
+          p{
+            font-family: "Poppins",sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 18px;
+            letter-spacing: 0em;
+            text-align: left;
+            text-transform: capitalize;
+            color: rgba(255, 255, 255, 1);
+          }
+        }
+      }
+      .type{
+        p{
+          font-family: "Poppins",sans-serif;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 18px;
+          letter-spacing: 0em;
+          display: inline-block;
+          padding: 7px 20px;
+          border-radius: 20px;
+          text-transform: capitalize;
+      }
+    }
+    .Amount{
+      p{
+        font-family: "Poppins",sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 18px;
+        letter-spacing: 0em;
+        color: rgba(255, 255, 255, 1);
+        text-transform: capitalize;
+      }
+    }
+    .State{
+      p{
+        font-family: "Poppins",sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 18px;
+        letter-spacing: 0em;
+        text-transform: capitalize;
+      }
+    }
+    button{
+      color: rgba(255, 255, 255, 1);
+    }
+  }
+  }
+  .select-btn{
+    i{
+      animation: growDown 300ms ease-in-out forwards;
+      transform-origin: top center;
+    }
+  }
+  .SelectBank-drop{
+    background-color: rgba(20, 20, 28, 1);
+    top: 101%;
+    animation: growDown 300ms ease-in-out forwards;
+    transform-origin: top center;
+    display: none;
+    padding-top: 10px;
+    color: rgba(255, 255, 255, 1);
+    &.active{
+      display: block !important;
+    }
+   button{
+    padding: 10px 25px;
+   }
+  
+  }
+  
+  
+  .pageBtn{
+    background: rgba(49, 53, 63, 1);
+    width: auto;
+    height: 36px;
+    border-radius: 6px;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba(255, 255, 255, 1);
+    padding: 0 15px;
+  }
+  .showing{
+    color: rgba(255, 255, 255, 1);
+    font-family: "Poppins",sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+    text-transform: capitalize;
+  }
+  .page-btn{
+    button{
+      border: 0.4px solid rgba(255, 255, 255, 0.2);
+      width: 34px;
+      height: 32px;
+      border-radius: 4px;
+      font-family: "Poppins",sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 22px;
+      letter-spacing: 0em;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.6);
+      &.active{
+        color:rgba(255, 255, 255, 1);
+        background-color: rgba(49, 53, 63, 1);
+        border-color: rgba(49, 53, 63, 1);
+      }
+    }
+  }
+  
+  }
+  .mobile-version{
+    .transaction-history{
+    background:rgba(28, 28, 38, 1);
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .top-bar{
+    h2{
+      font-family: "Poppins",sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 27px;
+      letter-spacing: 0.03em;
+      text-align: left;
+      color: rgba(255, 255, 255, 1);
+    }
+  }
+  .select-btn{
+    .btn{
+      border: 1px solid rgba(49, 53, 63, 1);
+      background-color: transparent;
+      height: 50px;
+      color: rgba(132, 143, 160, 1);
+    }
+  
+  }
+  
+  // background color
+  .buyC{
+    background-color: rgba(37, 59, 56, 1);
+    color: rgba(86, 237, 155, 1);
+  }
+  .sellC{
+    background-color: rgba(70, 44, 53, 1);
+    color:rgba(255, 120, 120, 1);
+  }
+  .exchangeC{
+    background-color: rgba(38, 53, 60, 1);
+    color:rgba(102, 237, 229, 1);
+  }
+  .withdrawC{
+    background-color: rgba(255, 146, 45, 0.15);
+    color:rgba(255, 182, 114, 1);
+  }
+  .depositC{
+    color: rgba(255, 240, 103, 1);
+    background: rgba(255, 240, 103, 0.15);
+  
+  }
+  
+  .pendingC{
+    color: rgba(249, 191, 104, 1);
+  }
+  .doneC{
+    color: rgba(64, 218, 132, 1);
+  }
+  .canceledC{
+    color:rgba(248, 118, 117, 1);
+  }
+  .transaction-table{
+    .transaction-table-head{
+      .Coin{
+        p{
+          font-family: "Poppins",sans-serif;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 18px;
+          letter-spacing: 0em;
+          color: rgba(255, 255, 255, 1);
+          text-transform: capitalize;
+        }
+      }
+      .Type{
+        p{
+          font-family: "Poppins",sans-serif;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 18px;
+          letter-spacing: 0em;
+          color: rgba(255, 255, 255, 1);
+          text-transform: capitalize;
+        }
+      }
+      .Date{
+        p{
+          font-family: "Poppins",sans-serif;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 18px;
+          letter-spacing: 0em;
+          color: rgba(255, 255, 255, 1);
+        }
+      }
+      .Amount{
+        p{
+          font-family: "Poppins",sans-serif;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 18px;
+          letter-spacing: 0em;
+          color: rgba(255, 255, 255, 1);
+        }
+      }
+      .Amount{
+        p{
+          font-family: "Poppins",sans-serif;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 18px;
+          letter-spacing: 0em;
+          color: rgba(255, 255, 255, 1);
+        }
+      }
+      .State{
+        p{
+          font-family: "Poppins",sans-serif;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 18px;
+          letter-spacing: 0em;
+          color: rgba(255, 255, 255, 1);
+        }
+      }
+    }
+  
+    .transaction-table-body{
+      .Date{
+        p{
+          font-family: "Poppins",sans-serif;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 18px;
+          letter-spacing: 0em;
+          color: rgba(255, 255, 255, 1);
+          text-transform: capitalize;
+        }
+      }
+      .coin{
+        .coin-box{
+          background-color: rgba(49, 53, 63, 1);
+          width: 44px;
+          height: 44px;
+          border-radius: 8px;
+        }
+        .coin-content{
+          h4{
+            font-family: "Poppins",sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 21px;
+            letter-spacing: 0em;
+            text-align: left;
+            color: rgba(255, 255, 255, 1);
+            text-transform: capitalize;
+          }
+          p{
+            font-family: "Poppins",sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 18px;
+            letter-spacing: 0em;
+            text-align: left;
+            text-transform: capitalize;
+            color: rgba(255, 255, 255, 1);
+          }
+        }
+      }
+      .type{
+        p{
+          font-family: "Poppins",sans-serif;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 18px;
+          letter-spacing: 0em;
+          display: inline-block;
+          padding: 7px 20px;
+          border-radius: 20px;
+          text-transform: capitalize;
+      }
+    }
+    .Amount{
+      p{
+        font-family: "Poppins",sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 18px;
+        letter-spacing: 0em;
+        color: rgba(255, 255, 255, 1);
+        text-transform: capitalize;
+      }
+    }
+    .State{
+      p{
+        font-family: "Poppins",sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 18px;
+        letter-spacing: 0em;
+        text-transform: capitalize;
+      }
+    }
+    button{
+      color: rgba(255, 255, 255, 1);
+    }
+  }
+  }
+  .select-btn{
+    i{
+      animation: growDown 300ms ease-in-out forwards;
+      transform-origin: top center;
+    }
+  }
+  .SelectBank-drop{
+    background-color: rgba(20, 20, 28, 1);
+    top: 101%;
+    animation: growDown 300ms ease-in-out forwards;
+    transform-origin: top center;
+    display: none;
+    padding-top: 10px;
+    color: rgba(255, 255, 255, 1);
+    &.active{
+      display: block !important;
+    }
+   button{
+    padding: 10px 25px;
+   }
+  
+  }
+  
+  
+  .pageBtn{
+    background: rgba(49, 53, 63, 1);
+    width: auto;
+    height: 36px;
+    border-radius: 6px;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba(255, 255, 255, 1);
+    padding: 0 15px;
+  }
+  .showing{
+    color: rgba(255, 255, 255, 1);
+    font-family: "Poppins",sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+    text-transform: capitalize;
+  }
+  .page-btn{
+    button{
+      border: 0.4px solid rgba(255, 255, 255, 0.2);
+      width: 34px;
+      height: 32px;
+      border-radius: 4px;
+      font-family: "Poppins",sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 22px;
+      letter-spacing: 0em;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.6);
+      &.active{
+        color:rgba(255, 255, 255, 1);
+        background-color: rgba(49, 53, 63, 1);
+        border-color: rgba(49, 53, 63, 1);
+      }
+    }
+  }
+  
+  }
+  
+  
+  .desktop-version {
+    display: block;
+  }
+  .mobile-version {
+    display: none;
+  }
+  
+  @media only screen and (max-width: 1100px) {
+    .desktop-version {
+      display: none;
+    }
+    .mobile-version {
+      display: block;
+    }
+  }
+  
+  @media only screen and (max-width: 420px){
+    .transaction-table-head{
+      width: 100%;
+      overflow-x: auto ;
+    }
+    .transaction-table-body{
+      width: 100%;
+      overflow-x: auto ;
+    }
+    .w-3\/12{
+      width: 150px !important;
+      padding-right: 10px;
+    }
+    .coin{
+      width: 200px !important;
+    }  .coin-content{
+      width: 118px !important;
+    }
+      .w-2\/12{
+      width: 150px !important;
+      padding-right: 10px;
+    }
+      .w-1\/12{
+      width: 150px !important;
+      padding-right: 10px;
+    }
+    .Date {
+      p{
+        width: 100px;
+      }
+    }
+    .coin-box{
+      width: 80px;
+    }
+    .Amount {
+      p{
+        width: 100px;
+      }
+    }
+    input#mat-input-1 {
+      background: transparent !important;
+  }
+    .select-btn{
+      span{
+        font-size: 10px !important;
+      }
+      i{
+        font-size: 10px !important;
+      }
+    }
+    .dropdown-item{
+      font-size: 10px;
+    }
+  }
+  

@@ -8,6 +8,7 @@ import { forgotPasswordUser, getCryptoPrice, loginUser, registerUser, requestUse
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+    const [ web3Token,setWeb3Token] = useState(null)
     const [token, setToken] = useState("");
     const [user, setUser] = useState(null);
     const [cryptoPrice, setCryptoPrice] = useState([]);
@@ -16,6 +17,11 @@ const AuthProvider = ({ children }) => {
 
     // Load token and user from local storage on component mount
 
+    const web3TokenSetup =(data)=>{
+        setWeb3Token(data)
+        localStorage.setItem('webToken',data);
+        console.log(web3Token)
+    }
 
     // Register handler
     const registerHandler = async (data) => {
@@ -107,7 +113,6 @@ const AuthProvider = ({ children }) => {
             setUser(null);
             setToken(null);
             toast.success('Logged out successfully!');
-            navigate('/login');
         } catch (error) {
             console.error('Failed to log out:', error);
             toast.error('Failed to log out. Please try again.');
@@ -120,11 +125,15 @@ const AuthProvider = ({ children }) => {
         const storedToken = localStorage.getItem('token');
         const storedUser = localStorage.getItem('user');
         const storedPrice = localStorage.getItem('crypto_price');
+        const storedWeb3 = localStorage.getItem('webToken')
 
         if (storedToken) {
             setToken(storedToken);
             setUser(JSON.parse(storedUser));
             setCryptoPrice(JSON.parse(storedPrice));
+        }
+        if (storedWeb3) {
+            setWeb3Token(storedWeb3);
         }
     }, []);
     return (
@@ -139,6 +148,8 @@ const AuthProvider = ({ children }) => {
             cryptoPrice,
             getWalletHandler,
             requestUserInformationHandler,
+            web3TokenSetup,
+            web3Token,
             logout
         }}>
             {children}
