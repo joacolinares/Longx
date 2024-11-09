@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom'; // For navigation
 import axios from 'axios'; // For making API requests
 import "./Home.scss"
-
+import { ethers } from "ethers";
+import { AuthContext } from '../context/AuthContext';
 const HomeComponent = () => {
+  const [account, setAccount] = useState({ address: "", balance: "" });
+  const [errorMessage, setErrorMessage] = useState("");
+  const {web3TokenSetup} =useContext(AuthContext)
     const navigate = useNavigate(); // Replacing Angular's Router for navigation
     const apiUrl = 'https://longx-backend.vercel.app';
     // Form state
@@ -27,11 +31,6 @@ const HomeComponent = () => {
       navigate('/register'); // Similar to this.router.navigate(['/register'])
     };
   
-    // Navigate to login page
-    const goLogin = () => {
-      navigate('/login'); // Similar to this.router.navigate(['/login'])
-    };
-  
     // Send mail function
     const sendMail = async () => {
       try {
@@ -44,7 +43,38 @@ const HomeComponent = () => {
         // toast.error('Error Sending Message');
       }
     };
+
+    const connectWallet = async () => {
+      try {
+        if (window.ethereum) {
+          const provider = new ethers.BrowserProvider(window.ethereum);
+          
+          // Request account access and get address
+          const accounts = await provider.send("eth_requestAccounts", []);
+          const address = accounts[0];
   
+          // Get balance
+          const balance = await provider.getBalance(address);
+  
+          // Store address and balance in state
+          setAccount({
+            address,
+            balance: ethers.formatEther(balance)
+          });
+          web3TokenSetup(address)
+          console.log(address);
+        } else {
+          setErrorMessage("MetaMask is not installed!");
+        }
+      } catch (error) {
+        if (error.code === "ACTION_REJECTED") {
+          setErrorMessage("Connection request was rejected.");
+        } else {
+          setErrorMessage("An error occurred while connecting to MetaMask.");
+        }
+        console.error("Connection error:", error);
+      }
+    };
   return (
     <div className="overflow-hidden app">
       <header>
@@ -110,8 +140,8 @@ const HomeComponent = () => {
               >
                 Crear Cuenta
               </button>
-              <button type="button" className="get_into_btn" onClick={goLogin}>
-                <span>Ingresar</span>
+              <button type="button" className="get_into_btn" onClick={connectWallet}>
+                <span>Connect Wallet</span>
                 <i className="mx-2 fa-solid fa-angle-right"></i>
               </button>
             </div>
