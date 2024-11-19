@@ -48,37 +48,37 @@ const HomeComponent = () => {
       }
     };
 
-    const connectWallet = async () => {
-      try {
-        if (window.ethereum) {
-          const provider = new ethers.BrowserProvider(window.ethereum);
+    // const connectWallet = async () => {
+    //   try {
+    //     if (window.ethereum) {
+    //       const provider = new ethers.BrowserProvider(window.ethereum);
           
-          // Request account access and get address
-          const accounts = await provider.send("eth_requestAccounts", []);
-          const address = accounts[0];
+    //       // Request account access and get address
+    //       const accounts = await provider.send("eth_requestAccounts", []);
+    //       const address = accounts[0];
   
-          // Get balance
-          const balance = await provider.getBalance(address);
+    //       // Get balance
+    //       const balance = await provider.getBalance(address);
   
-          // Store address and balance in state
-          setAccount({
-            address,
-            balance: ethers.formatEther(balance)
-          });
-          web3TokenSetup(address)
-          console.log(address);
-        } else {
-          setErrorMessage("MetaMask is not installed!");
-        }
-      } catch (error) {
-        if (error.code === "ACTION_REJECTED") {
-          setErrorMessage("Connection request was rejected.");
-        } else {
-          setErrorMessage("An error occurred while connecting to MetaMask.");
-        }
-        console.error("Connection error:", error);
-      }
-    };
+    //       // Store address and balance in state
+    //       setAccount({
+    //         address,
+    //         balance: ethers.formatEther(balance)
+    //       });
+    //       web3TokenSetup(address)
+    //       console.log(address);
+    //     } else {
+    //       setErrorMessage("MetaMask is not installed!");
+    //     }
+    //   } catch (error) {
+    //     if (error.code === "ACTION_REJECTED") {
+    //       setErrorMessage("Connection request was rejected.");
+    //     } else {
+    //       setErrorMessage("An error occurred while connecting to MetaMask.");
+    //     }
+    //     console.error("Connection error:", error);
+    //   }
+    // };
 
     const address = useActiveAccount();
 
