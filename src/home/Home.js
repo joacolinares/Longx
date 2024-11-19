@@ -1,9 +1,13 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom'; // For navigation
 import axios from 'axios'; // For making API requests
 import "./Home.scss"
 import { ethers } from "ethers";
 import { AuthContext } from '../context/AuthContext';
+import { ConnectButton, ConnectEmbed, useActiveAccount } from 'thirdweb/react';
+import { client } from "../../src/client";
+import { optimism } from 'thirdweb/chains';
+
 const HomeComponent = () => {
   const [account, setAccount] = useState({ address: "", balance: "" });
   const [errorMessage, setErrorMessage] = useState("");
@@ -75,6 +79,18 @@ const HomeComponent = () => {
         console.error("Connection error:", error);
       }
     };
+
+    const address = useActiveAccount();
+
+    useEffect(() => {
+    console.log(address)
+    if(address != undefined){
+      web3TokenSetup(address.address)
+    }
+
+    }, [address])
+    
+    
   return (
     <div className="overflow-hidden app">
       <header>
@@ -131,6 +147,7 @@ const HomeComponent = () => {
             <div className="title">
               <h1>Long X</h1>
               <h4 className="subtitle">intercambio de criptomonedas</h4>
+             
             </div>
             <div className="flex items-center justify-center pt-5 banner_btn">
               <button
@@ -140,10 +157,14 @@ const HomeComponent = () => {
               >
                 Crear Cuenta
               </button>
-              <button type="button" className="get_into_btn" onClick={connectWallet}>
+              <ConnectButton
+              client={client}
+              chain={optimism}
+                  />   
+              {/* <button type="button" className="get_into_btn" onClick={connectWallet}>
                 <span>Connect Wallet</span>
                 <i className="mx-2 fa-solid fa-angle-right"></i>
-              </button>
+              </button> */}
             </div>
             <div className="flex justify-center items-center pt-10">
               <button type="button" className="-mr-3">

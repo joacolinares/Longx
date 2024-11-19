@@ -3,24 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import { Clipboard } from 'react-clipboard.js'; // Import clipboard if necessary for copy functionality
 import"./ClpWithdrawComponent.scss"
 import { AuthContext } from '../../../../../../context/AuthContext';
+import { getContract, prepareContractCall, sendTransaction } from 'thirdweb';
+import { client } from "../../../../../../client"
+import { optimism } from "thirdweb/chains";
+import { ethers } from "ethers";
+import { toast } from 'react-toastify';
+import { useActiveAccount } from 'thirdweb/react';
+
 
 const Web3ClpWithdrawComponent = () => {
-  const mainBalance = 1000; // Static balance
-  const usdtPrice = 35.35; // Static USDT price
-  const clpPrice = 950; // Static CLP price
-  const wallet = {
-    usdt: 500,
-    clp: 2000,
-    btc: 0.05
-  };
-  
-  const cryptoPrice = {
-    usdtPrice: 1.00, // assume 1 USDT to USD
-    clpPrice: 850,   // assume 1 CLP = 850 USD
-  };
-
-  const [getBalance, setGetBalance] = useState(0);
-
+  const { user, cryptoPrice } = useContext(AuthContext);
+  const [wallet, setWallet] = useState("");
   const [selectBank, setSelectBank] = useState(true);
   const [IsSearch, setIsSearch] = useState(false);
   const [isBankName, setIsBankName] = useState(false);
@@ -34,11 +27,14 @@ const Web3ClpWithdrawComponent = () => {
   });
   const [searching, setSearching] = useState('');
   const [clipboardText, setClipboardText] = useState('02154dsf4g8hxdrer45gh4245884');
+  const [amount, setAmount] = useState('0');
+  const [address, setAddress] = useState('0x0000000000000000000000000000000000000000');
   const [BankName, setBankName] = useState('Lorem ipsum');
+  const [networkName, setNetworkName] = useState('Seleccionar la moneda');
   const [BankNumber, setBankNumber] = useState('1234-2574-25410');
   const [AccountTypeName, setAccountTypeName] = useState('CTA');
   const [uploadPhoto, setUploadPhoto] = useState('Upload file');
-
+  const addressSender = useActiveAccount()
   const searchRouting = [
     {
       id: 1,
@@ -89,6 +85,10 @@ const Web3ClpWithdrawComponent = () => {
     { name: 'Banco Santander-Chile' },
     { name: 'SCOTIABANK CHILE' },
     { name: 'Banco Falabella' },
+  ];
+  const CryptoList = [
+    { name: 'OP' },
+    { name: 'USDT' },
   ];
 
   const BankNumberList = [
@@ -169,10 +169,8 @@ const Web3ClpWithdrawComponent = () => {
   ];
 
   const NetworkList = [
-    { name: 'Tron TRC 20' },
-    { name: 'BTC' },
-    { name: 'LTC' },
-    { name: 'BNB' },
+    { name: 'OP' },
+    { name: 'USDT' },
   ];
 
   const navigate = useNavigate();
@@ -197,6 +195,13 @@ const Web3ClpWithdrawComponent = () => {
     });
   };
 
+  const NetworkChange = (event) => {
+    console.log("asd")
+    console.log(event.target.innerText)
+    setNetworkName(event.target.innerText);
+    setIsNetwork(false);
+  };
+
   const BankNameChange = (event) => {
     setBankName(event.target.innerText);
     setIsNetwork(false);
@@ -212,6 +217,92 @@ const Web3ClpWithdrawComponent = () => {
     setIsBankType(false);
   };
 
+
+
+
+
+
+
+  const handleWithdraw = async (token, to,amountToWithdraw) => {
+    console.log("////")
+    console.log(token)
+    console.log(to)
+    console.log(amountToWithdraw)
+    
+    let tokenAddress
+    let decimals
+
+    if(token == "OP"){
+      tokenAddress = "0x4200000000000000000000000000000000000042"
+      decimals = 18
+    }else if(token == "USDT"){
+      tokenAddress = "0x94b008aA00579c1307B0EF2c499aD98a8ce58e58"
+      decimals = 6
+    }
+
+    console.log(tokenAddress)
+    console.log(decimals)
+    if (!ethers.utils.isAddress(addressSender.address) || addressSender.address === "0x0000000000000000000000000000000000000000") {
+      toast.error("Dirección no válida");
+      return;
+    }
+    try {
+      if (address) {
+        const contract = getContract({
+          address: tokenAddress,
+          client: client,
+          chain: optimism
+        });
+        console.log("wallet")
+        console.log(addressSender)
+
+        const formatedAmount = ethers.utils.parseUnits(amountToWithdraw, decimals)
+        const formatedAmountBigInt = 1;
+
+        const transaction = prepareContractCall({
+          contract: contract,
+          method: "function transfer(address to, uint256 value)",
+          params: [to, formatedAmount]
+        });
+
+        console.log(transaction)
+
+        const { transactionHash } = await sendTransaction({
+          account: addressSender,
+          transaction: transaction
+        });
+        console.log(transactionHash)
+
+        toast.success('Transacción confirmada!', {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+    } catch (error) {
+      toast.error(`Error: ${error.message}`, {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
+
+
+
+
+
+
   return (
     <>
     <div className="desktop-version">
@@ -225,7 +316,7 @@ const Web3ClpWithdrawComponent = () => {
                     <h2>Retirar</h2>
                   </div>
                 </div>
-                <div className="relative flex items-center justify-end w-2/4">
+                {/* <div className="relative flex items-center justify-end w-2/4">
                   <button
                     type="button"
                     className="flex items-center justify-between drop-button"
@@ -278,15 +369,16 @@ const Web3ClpWithdrawComponent = () => {
                       ))}
                     </div>
                   )}
-                </div>
+                </div> */}
               </div>
               <div className="py-3 price-box">
                 <div className="flex items-start justify-between">
                   <div className="price-content">
-                    <p>
+                    {/* <p>
                       {currentSearch.title}/{currentSearch.subtitle}
-                    </p>
-                    <h2 className="py-2">{wallet?.CLP} CLP</h2>
+                    </p> */}
+                    {/* <h2 className="py-2">{wallet?.CLP} CLP</h2> */}
+                    <h2 style={{fontSize:"12px"}} className="py-3">Para retirar dinero debe seleccionar la crypto, luego escribir la direccion y al final presionar en retirar</h2>
                   </div>
                   <div className="price-button">
                     <div className="flex">
@@ -302,7 +394,7 @@ const Web3ClpWithdrawComponent = () => {
                         className={selectBank ? 'active' : ''}
                         onClick={() => setSelectBank(!selectBank)}
                       >
-                        QR Code
+                        Crypto
                       </button>
                     </div>
                   </div>
@@ -507,47 +599,48 @@ const Web3ClpWithdrawComponent = () => {
               {/* QR Code Payment */}
               {selectBank && (
                 <div className="p-4 bank-qr">
-                  <div className="py-4 title">
+                  {/* <div className="py-4 title">
                     <p>Scan Code to Make Payment</p>
-                  </div>
-                  <div className="flex justify-center w-full py-4 text-center qr-code-box">
+                  </div> */}
+                  {/* <div className="flex justify-center w-full py-4 text-center qr-code-box">
                     <img src="/assets/logos/qrCode.svg" alt="qrCode" />
-                  </div>
+                  </div> */}
 
-                  <div className="relative flex flex-col mb-4 form-group">
-                    <label htmlFor="SelectBank">Seleccione Red</label>
-                    <button
-                      type="button"
-                      className="flex justify-start w-full SelectBank-btn"
-                      onClick={() => setIsNetwork(!isNetwork)}
-                    >
-                      <div className="w-3/4 px-3 text-left">
-                        <p>{BankName}</p>
-                      </div>
-                      <div className="flex justify-end w-1/4 px-3 text-end">
-                        <button type="button" className="flex items-center justify-end arrow-btn">
-                          <i className={`fa-solid ${isNetwork ? 'fa-angle-up' : 'fa-angle-down'}`}></i>
-                        </button>
-                      </div>
-                    </button>
-                    {isNetwork && (
-                      <div className="absolute left-0 right-0 w-full p-4 rounded-lg dropdown-menu SelectBank-drop">
-                        {NetworkList.map((item, index) => (
-                          <button
-                            key={index}
-                            className="dropdown-item"
-                            type="button"
-                            onClick={(event) => BankNameChange(event)}
-                          >
-                            {item.name}
+                  
+                    <div className="relative flex flex-col mb-4 form-group">
+                      <label htmlFor="SelectBank">Seleccione la moneda a retirar</label>
+                      <button
+                        type="button"
+                        className="flex justify-start w-full SelectBank-btn"
+                        onClick={() => setIsNetwork(!isNetwork)}
+                      >
+                        <div className="w-3/4 px-3 text-left">
+                          <p>{networkName}</p>
+                        </div>
+                        <div className="flex justify-end w-1/4 px-3 text-end">
+                          <button type="button" className="flex items-center justify-end arrow-btn">
+                            <i className={`fa-solid ${isNetwork ? 'fa-angle-up' : 'fa-angle-down'}`}></i>
                           </button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
+                        </div>
+                      </button>
+                      {isNetwork && (
+                        <div className={`${isNetwork?'active':''} absolute left-0 right-0 w-full p-4 rounded-lg dropdown-menu SelectBank-drop`} >
+                          {NetworkList.map((item, index) => (
+                            <button
+                              key={index}
+                              className="dropdown-item"
+                              type="button"
+                              onClick={(event) => NetworkChange(event)}
+                            >
+                              {item.name}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
 
-                  <div className="flex flex-col w-full h-full form-group">
-                    <label htmlFor="ValuePerUsdt">Address</label>
+                    <div className="flex flex-col w-full h-full form-group">
+                    <label htmlFor="ValuePerUsdt">Cantidad a enviar</label>
                     <div className="relative w-full">
                       <input
                         type="text"
@@ -555,23 +648,46 @@ const Web3ClpWithdrawComponent = () => {
                         id="ValuePerUsdt"
                         className="w-full form-control"
                         placeholder="RED TRON TRC-20"
-                        value={clipboardText}
-                        onChange={(e) => setClipboardText(e.target.value)}
+                        value={amount}
+                        onChange={(e) => setAmount(e.target.value)}
                       />
-                      <button
+                      {/* <button
                         type="button"
                         className="absolute btn-copy"
                         data-toggle="button"
                         onClick={() => navigator.clipboard.writeText(clipboardText)}
                       >
                         Copiar <i className="fa-regular fa-copy"></i>
-                      </button>
+                      </button> */}
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col w-full h-full form-group">
+                    <label htmlFor="ValuePerUsdt">Dirección del destinatario</label>
+                    <div className="relative w-full">
+                      <input
+                        type="text"
+                        name="ValuePerUsdt"
+                        id="ValuePerUsdt"
+                        className="w-full form-control"
+                        placeholder="RED TRON TRC-20"
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                      />
+                      {/* <button
+                        type="button"
+                        className="absolute btn-copy"
+                        data-toggle="button"
+                        onClick={() => navigator.clipboard.writeText(clipboardText)}
+                      >
+                        Copiar <i className="fa-regular fa-copy"></i>
+                      </button> */}
                     </div>
                   </div>
 
                   <div className="py-5 save-button">
-                    <button type="button" className="btn">
-                      Deposit
+                    <button onClick={() =>{handleWithdraw(networkName,address, amount)}} type="button" className="btn">
+                      Retirar dinero
                     </button>
                   </div>
                 </div>

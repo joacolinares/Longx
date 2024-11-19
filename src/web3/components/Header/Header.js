@@ -2,6 +2,11 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./Header.scss"
 import { AuthContext } from '../../../context/AuthContext';
+import { ConnectButton } from 'thirdweb/react';
+import { optimism } from 'thirdweb/chains';
+import { client } from "../../../client";
+
+
 const Web3HeaderComponent = () => {
   const [notificationBar, setNotificationBar] = useState(false);
   const {user} =useContext(AuthContext)
@@ -51,7 +56,7 @@ const Web3HeaderComponent = () => {
                     <span className="notification-badge"></span>
                   </button>
                 </div>
-                <div className="profile">
+                {/* <div className="profile">
                   <button type="button" className="flex items-center p-4 cursor-pointer" onClick={profileButton}>
                     <div className="mx-3 info">
                       <h2>{user?.name}</h2>
@@ -61,7 +66,12 @@ const Web3HeaderComponent = () => {
                       <i className="fa-solid fa-ellipsis-vertical"></i>
                     </button>
                   </button>
-                </div>
+                </div> */}
+
+                <ConnectButton
+              client={client}
+              chain={optimism}
+                  />   
               </div>
               {notificationBar && (
                 <div className={`notification-area ${notificationBar ? 'active' : ''}`}>
@@ -126,7 +136,7 @@ const Web3HeaderComponent = () => {
                     <span className="notification-badge"></span>
                   </button>
                 </div>
-                <div className="profile w-10/12">
+                {/* <div className="profile w-10/12">
                   <button type="button" className="flex items-center p-4 cursor-pointer" onClick={profileButton}>
                     <div className="mx-3 info">
                       <h2>{user?.name}</h2>
@@ -136,8 +146,15 @@ const Web3HeaderComponent = () => {
                       <i className="fa-solid fa-ellipsis-vertical"></i>
                     </button>
                   </button>
-                </div>
+                </div> */}
+
+                <ConnectButton
+              client={client}
+              chain={optimism}
+                  />   
+
               </div>
+
               {notificationBar && (
                 <div className={`notification-area ${notificationBar ? 'active' : ''}`}>
                   <div className="flex items-center justify-between p-5 top-bar">

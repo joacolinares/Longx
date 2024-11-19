@@ -5,75 +5,54 @@ import "./ClipWalletComponent.scss";
 import ExchangeMoneyComponent from "../../../general/components/exchangeMoney/ExchangeMoneyComponent";
 import { AuthContext } from "../../../../../../context/AuthContext";
 import { toast } from "react-toastify";
-const Web3ClipWalletComponent = () => {
-  const mainBalance = 1000; // Static balance
-  const usdtPrice = 35.35; // Static USDT price
-  const clpPrice = 950; // Static CLP price
-  const wallet = {
-    usdt: 500,
-    clp: 2000,
-    btc: 0.05
-  };
-  
-  const cryptoPrice = {
-    usdtPrice: 1.00, // assume 1 USDT to USD
-    clpPrice: 850,   // assume 1 CLP = 850 USD
-  };
+import { useActiveAccount } from "thirdweb/react";
+import { ThirdwebSDK } from "@thirdweb-dev/sdk";
+import { ethers } from "ethers";
 
+
+
+const ClipWalletComponent = () => {
+  const { user, cryptoPrice } = useContext(AuthContext);
   const [getBalance, setGetBalance] = useState(0);
-
+  const [state, setState] = useState("initial")
+  const mainBalance = 1;
+  const usdtPrice = 1
+  const clpPrice = 2
+  const wallet = "";
   const [visible, setVisible] = useState(false);
+
+  const [balances, setBalances] = useState({});
+
   const [currentSearch, setCurrentSearch] = useState({
     icon: "/assets/flag/chile.svg",
     title: "Pesos Chilenos",
     subtitle: "CLP",
   });
   const [searching, setSearching] = useState("");
-  const [portfolioList] = useState([
+  const [portfolioList, setPortfolioList] = useState([
     {
       name: "Tether",
       price: "0 USDT",
       img: "/assets/logos/usdt.svg",
       url: "/dashboard/wallet/usdt",
+      subtitle: "USDT", // Añadimos el subtitle para hacer coincidir con balances
     },
     {
-      name: "TRON",
-      price: "0 TRX",
-      img: "/assets/logos/tronix.svg",
-      url: "/dashboard/wallet/trx",
-    },
-    {
-      name: "Bitcoin",
-      price: "0 BTC",
-      img: "/assets/logos/bitcoin.svg",
-      url: "/dashboard/wallet/btc",
-    },
-    {
-      name: "Injective",
-      price: "0 INJ",
-      img: "/assets/logos/Injective.svg",
-      url: "/dashboard/wallet/inj",
-    },
-    {
-      name: "Ethereum",
-      price: "0 ETH",
-      img: "/assets/flag/eth.svg",
-      url: "/dashboard/wallet/eth",
-    },
-    {
-      name: "Pesos Chilenos",
-      price: "0 CLP",
-      img: "/assets/flag/chile.svg",
-      url: "/dashboard/wallet/clp",
-    },
+      name: "Optimism",
+      price: "0 OP",
+      img: "/assets/flag/chile.svg", // Reemplaza con el icono de OP
+      url: "/dashboard/wallet/op",
+      subtitle: "OP", // Añadimos el subtitle para hacer coincidir con balances
+    }
   ]);
   const [searchRouting, setSearchRouting] = useState([
     {
       id: 1,
       icon: "/assets/flag/chile.svg",
-      title: "Pesos Chilenos",
-      subtitle: "CLP",
+      title: "Optimism",
+      subtitle: "OP",
       isActive: false,
+      address: "0x4200000000000000000000000000000000000042"
     },
     {
       id: 2,
@@ -81,34 +60,7 @@ const Web3ClipWalletComponent = () => {
       title: "Tether",
       subtitle: "USDT",
       isActive: false,
-    },
-    {
-      id: 3,
-      icon: "/assets/flag/btc.svg",
-      title: "Bitcoin",
-      subtitle: "BTC",
-      isActive: false,
-    },
-    {
-      id: 4,
-      icon: "/assets/flag/Injective.svg",
-      title: "Injective",
-      subtitle: "INJ",
-      isActive: false,
-    },
-    {
-      id: 5,
-      icon: "/assets/flag/tronix.svg",
-      title: "TRON",
-      subtitle: "TRX",
-      isActive: false,
-    },
-    {
-      id: 6,
-      icon: "/assets/flag/eth.svg",
-      title: "Ethereum",
-      subtitle: "ETH",
-      isActive: false,
+      address: "0x94b008aA00579c1307B0EF2c499aD98a8ce58e58"
     },
   ]);
   const [isSearch, setIsSearch] = useState(false);
@@ -220,6 +172,59 @@ const Web3ClipWalletComponent = () => {
   //   setChartOptions({ ...chartOptions, series: [newValue1, newValue2] });
   // };
 
+  const sdk = new ThirdwebSDK("optimism", {
+    clientId: "cc5bce03731565ca017e5cf0056d60cb",
+  });
+
+  const getTokenBalance = async (tokenAddress, walletAddress) => {
+    try {
+    const contract = await sdk.getContract(tokenAddress);
+
+    const decimals = await contract.call("decimals");
+
+    const balance = await contract.call("balanceOf", [walletAddress]);
+
+    const balanceFormatted = ethers.utils.formatUnits(balance, decimals);
+
+    const balanceLimited = parseFloat(balanceFormatted).toFixed(4);
+    
+    return balanceLimited;
+    } catch (error) {
+      console.error("Error al obtener el balance:", error);
+      return "0";
+    }
+  };
+
+  const address = useActiveAccount();
+
+  
+
+
+  useEffect(() => {
+    const fetchBalances = async () => {
+      const newBalances = {};
+      for (const currency of searchRouting) {
+        const balance = await getTokenBalance(currency.address, address?.address);
+        newBalances[currency.subtitle] = balance;
+      }
+
+      setBalances(newBalances);
+
+      // Actualizamos el portfolioList con los balances obtenidos
+      setPortfolioList((prevList) =>
+        prevList.map((item) => ({
+          ...item,
+          price: `${balances[item.subtitle] || "0"} ${item.subtitle}`,
+        }))
+      );
+    };
+
+    if (address) {
+      fetchBalances();
+    }
+  }, [address, balances]);
+
+
   return (
     <>
       {/* Desktop Version */}
@@ -232,7 +237,7 @@ const Web3ClipWalletComponent = () => {
                   <div className="relative h-full chilean-pesos">
                     <div className="flex h-full p-5 top-item flex-w">
                       <div className="w-3/4">
-                        <div className="flex items-center justify-start cursor-pointer top-content">
+                        {/* <div className="flex items-center justify-start cursor-pointer top-content">
                           <button type="button" className="top-content-btn">
                             <img src={currentSearch.icon} alt="chile" />
                           </button>
@@ -240,15 +245,17 @@ const Web3ClipWalletComponent = () => {
                             <h3>{currentSearch.title}</h3>
                             <p>{currentSearch.subtitle}</p>
                           </div>
-                        </div>
-                        <div className="balance">
+                        </div> */}
+                        {/* <div className="balance">
                           <p className="pt-4 pb-2">Total Balance</p>
                           <h2>{mainBalance}</h2>
                           <h4>
                             {(getBalance / clpPrice).toFixed(7)}{" "}
                             {currentSearch.subtitle}
+
+                            1000,00
                           </h4>
-                        </div>
+                        </div> */}
                         <div className="flex items-center justify-between pt-8 balance-button-group">
                           <button
                             type="button"
@@ -266,7 +273,23 @@ const Web3ClipWalletComponent = () => {
                           </button>
                         </div>
                       </div>
-                      <div className="flex justify-end ">
+
+
+
+                          
+
+
+
+
+
+
+
+
+
+
+
+
+                      {/* <div className="flex justify-end ">
                         <button
                           type="button"
                           className="flex items-center justify-between drop-button w-[120px] mr-2"
@@ -282,10 +305,10 @@ const Web3ClipWalletComponent = () => {
                             <i className="fa-solid fa-angle-down"></i>
                           </div>
                         </button>
-                      </div>
+                      </div> */}
                     </div>
 
-                    {/* Drop-down */}
+                  
                     {isSearch && (
                       <div
                         className={`${isSearch ? "active" : ""
@@ -785,4 +808,4 @@ const Web3ClipWalletComponent = () => {
   );
 };
 
-export default Web3ClipWalletComponent;
+export default ClipWalletComponent;

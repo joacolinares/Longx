@@ -6,8 +6,8 @@ import "./ComprarVenderComponent.scss"
 const ComprarVenderComponent = () => {
     const { user, getCryptoPriceHandler, getWalletHandler, cryptoPrice } = useContext(AuthContext);
     const mainBalance = user.balance
-    const usdtPrice = cryptoPrice.usdtPrice;
-    const clpPrice = cryptoPrice.clpPrice;
+    const usdtPrice = 1;
+    const clpPrice = 2;
     const wallet = user.wallet
     const [currencyDrop, setCurrencyDrop] = useState(false);
     const [chartOptions, setChartOptions] = useState({

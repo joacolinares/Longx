@@ -10,8 +10,8 @@ const GeneralComponent = () => {
   const { user, getCryptoPriceHandler, getWalletHandler ,cryptoPrice} =
     useContext(AuthContext);
   const  mainBalance = user.balance
-  const usdtPrice = cryptoPrice.usdtPrice;
-  const clpPrice = cryptoPrice.clpPrice;
+  const usdtPrice = 1;
+  const clpPrice = 2;
   const wallet =user.wallet
   const [transactions, setTransactions] = useState([]);
   const [currencyDrop, setCurrencyDrop] = useState(false);

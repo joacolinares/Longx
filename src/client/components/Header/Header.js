@@ -2,6 +2,10 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./Header.scss"
 import { AuthContext } from '../../../context/AuthContext';
+import { client } from "../../../client";
+import { optimism } from "thirdweb/chains";
+
+import { ConnectButton } from "thirdweb/react";
 const HeaderComponent = () => {
   const [notificationBar, setNotificationBar] = useState(false);
   const {user} =useContext(AuthContext)
@@ -51,7 +55,7 @@ const HeaderComponent = () => {
                     <span className="notification-badge"></span>
                   </button>
                 </div>
-                <div className="profile">
+                {/* <div className="profile">
                   <button type="button" className="flex items-center p-4 cursor-pointer" onClick={profileButton}>
                     <div className="mx-3 info">
                       <h2>{user?.name}</h2>
@@ -61,7 +65,11 @@ const HeaderComponent = () => {
                       <i className="fa-solid fa-ellipsis-vertical"></i>
                     </button>
                   </button>
-                </div>
+                </div> */}
+                                        <ConnectButton
+              client={client}
+              chain={optimism}
+                  />    
               </div>
               {notificationBar && (
                 <div className={`notification-area ${notificationBar ? 'active' : ''}`}>

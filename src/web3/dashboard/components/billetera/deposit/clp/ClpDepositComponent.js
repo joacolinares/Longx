@@ -3,10 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { Clipboard } from 'react-clipboard.js'; // Import clipboard if necessary for copy functionality
 import"./ClpDepositComponent.scss"
 import { AuthContext } from '../../../../../../context/AuthContext';
+import { useActiveAccount } from 'thirdweb/react';
+import QRCode, { QRCodeSVG } from "qrcode.react";
+
 
 const Web3ClpDepositComponent = () => {
   const { user, cryptoPrice } = useContext(AuthContext);
-  const [wallet, setWallet] = useState(user.wallet);
+  const [wallet, setWallet] = useState("");
   const [selectBank, setSelectBank] = useState(true);
   const [IsSearch, setIsSearch] = useState(false);
   const [isBankName, setIsBankName] = useState(false);
@@ -198,6 +201,8 @@ const Web3ClpDepositComponent = () => {
     setIsBankType(false);
   };
 
+  const address = useActiveAccount()
+
   return (
     <>
     <div className="desktop-version">
@@ -211,7 +216,7 @@ const Web3ClpDepositComponent = () => {
                     <h2>Deposit</h2>
                   </div>
                 </div>
-                <div className="relative flex items-center justify-end w-2/4">
+                {/* <div className="relative flex items-center justify-end w-2/4">
                   <button
                     type="button"
                     className="flex items-center justify-between drop-button"
@@ -264,15 +269,15 @@ const Web3ClpDepositComponent = () => {
                       ))}
                     </div>
                   )}
-                </div>
+                </div> */}
               </div>
               <div className="py-3 price-box">
                 <div className="flex items-start justify-between">
                   <div className="price-content">
-                    <p>
+                    {/* <p>
                       {currentSearch.title}/{currentSearch.subtitle}
                     </p>
-                    <h2 className="py-2">{wallet?.CLP} CLP</h2>
+                    <h2 className="py-2">{wallet?.CLP} CLP</h2> */}
                   </div>
                   <div className="price-button">
                     <div className="flex">
@@ -497,10 +502,17 @@ const Web3ClpDepositComponent = () => {
                     <p>Scan Code to Make Payment</p>
                   </div>
                   <div className="flex justify-center w-full py-4 text-center qr-code-box">
-                    <img src="/assets/logos/qrCode.svg" alt="qrCode" />
+                    {/* <img src="/assets/logos/qrCode.svg" alt="qrCode" /> */}
+                    {address && (
+                      <QRCodeSVG
+                        value={address.address}
+                        size={256}
+                        level={"H"}
+                      />
+                    )}
                   </div>
 
-                  <div className="relative flex flex-col mb-4 form-group">
+                  {/* <div className="relative flex flex-col mb-4 form-group">
                     <label htmlFor="SelectBank">Seleccione Red</label>
                     <button
                       type="button"
@@ -530,7 +542,7 @@ const Web3ClpDepositComponent = () => {
                         ))}
                       </div>
                     )}
-                  </div>
+                  </div> */}
 
                   <div className="flex flex-col w-full h-full form-group">
                     <label htmlFor="ValuePerUsdt">Address</label>
@@ -541,25 +553,25 @@ const Web3ClpDepositComponent = () => {
                         id="ValuePerUsdt"
                         className="w-full form-control"
                         placeholder="RED TRON TRC-20"
-                        value={clipboardText}
+                        value={address.address}
                         onChange={(e) => setClipboardText(e.target.value)}
                       />
                       <button
                         type="button"
                         className="absolute btn-copy"
                         data-toggle="button"
-                        onClick={() => navigator.clipboard.writeText(clipboardText)}
+                        onClick={() => navigator.clipboard.writeText(address.address)}
                       >
                         Copiar <i className="fa-regular fa-copy"></i>
                       </button>
                     </div>
                   </div>
 
-                  <div className="py-5 save-button">
+                  {/* <div className="py-5 save-button">
                     <button type="button" className="btn">
                       Deposit
                     </button>
-                  </div>
+                  </div> */}
                 </div>
               )}
             </div>

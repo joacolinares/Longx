@@ -40,9 +40,10 @@ const {loginHandler} =useContext(AuthContext)
               <div className="pt-20 pb-10 hello-conote-contents">
                 <h2>INICIA SESIÓN</h2>
               </div>
-
+          
               {/* Login Form with Formik */}
               <div className="login-form">
+           
                 <Formik
                   initialValues={{ email: '', password: '', checkbox: false }}
                   validationSchema={validationSchema}

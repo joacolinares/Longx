@@ -9,8 +9,8 @@ const UsdtWalletComponent = () => {
   const { user, cryptoPrice } = useContext(AuthContext);
   const [getBalance, setGetBalance] = useState(0);
   const mainBalance = user.balance;
-  const usdtPrice = cryptoPrice.usdtPrice;
-  const clpPrice = cryptoPrice.clpPrice;
+  const usdtPrice = 1;
+  const clpPrice = 2;
   const wallet = user.wallet;
   const [visible, setVisible] = useState(false);
   const [currentSearch, setCurrentSearch] = useState({

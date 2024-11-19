@@ -6,7 +6,7 @@ import { AuthContext } from '../../../../../../context/AuthContext';
 
 const ClpDepositComponent = () => {
   const { user, cryptoPrice } = useContext(AuthContext);
-  const [wallet, setWallet] = useState(user.wallet);
+  const [wallet, setWallet] = useState("");
   const [selectBank, setSelectBank] = useState(true);
   const [IsSearch, setIsSearch] = useState(false);
   const [isBankName, setIsBankName] = useState(false);
